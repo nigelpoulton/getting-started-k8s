@@ -1,0 +1,30 @@
+# Simple deployment used to deploy and manage the app contained in nigelpoulton/ps-web:1.0
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+  labels:
+    app: web
+spec:
+  selector:
+    matchLabels:
+      app: web
+  replicas: 5
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: web
+    spec: 
+      terminationGracePeriodSeconds: 1
+      containers:
+      - name: web-ctr
+        image: nigelpoulton/ps-web:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
