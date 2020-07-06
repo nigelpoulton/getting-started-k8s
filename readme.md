@@ -1,23 +1,22 @@
 # Readme
 
-Super-simple Node.js web app for use in Pluralsight [Getting Started with Kubernetes](https://app.pluralsight.com/library/courses/getting-started-kubernetes/table-of-contents) video course.
+Node.js web app for use in Pluralsight [Getting Started with Kubernetes](https://app.pluralsight.com/library/courses/getting-started-kubernetes/table-of-contents) video course.
 
-Packages and dependencies will be upadted annually. 
+Packages and dependencies will be upadted annually. May contain vulnerable code, **use at own risk**.
 
-May contain vulnerable code, **use at own risk**.
+## App
+
+The app, dependencies, and Dockerfile are in the `/App` folder.
+
+## Kubernetes YAML files
+
+All Kubernetes YAML manifests are in the `Pods`, `Services`, and `Deployments` folders.
 
 ## Additional references
 
+List of additional books, courses, blogs, and other places this repo is used/referenced:
+
 - None
-
-## Instructions for use
-
-1. Fork the repo 
-2. Clone fork locally
-3. Build Docker image `docker image build -t <tag> .` from within the root directory of the repo 
-4. Push image to container registry
-5. Run container/Pod using the created image 
-
 
 ## Pre-created image
 
