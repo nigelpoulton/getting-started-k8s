@@ -11,3 +11,4 @@ spec:
     protocol: TCP
   selector:
     app: web
+    
