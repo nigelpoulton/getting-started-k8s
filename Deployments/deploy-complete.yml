@@ -24,7 +24,7 @@ spec:
       terminationGracePeriodSeconds: 1
       containers:
       - name: hello-pod
-        image: nigelpoulton/getting-started-k8s:1.0
+        image: nigelpoulton/getting-started-k8s:2.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
