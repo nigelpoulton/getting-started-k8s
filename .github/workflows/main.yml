@@ -7,12 +7,7 @@ on:
       - master
     paths:
       - 'azure/azuredeploy.json'
-      - 'azure/azuredeploy.parameters.json''
-  workflow_dispatch:
-    inputs:
-      deploy_target:
-        description: 'Target environment to deploy to'
-        default: 'production'
+      - 'azure/azuredeploy.parameters.json'
 
 jobs:
   deploy_aks_production:
