@@ -12,7 +12,6 @@ on:
     inputs:
       deploy_target:
         description: 'Target environment to deploy to'
-        required: true
         default: 'production'
 
 jobs:
