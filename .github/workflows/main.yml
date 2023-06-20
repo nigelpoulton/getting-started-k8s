@@ -1,25 +1,36 @@
-- name: Deploy Azure Resource Manager (ARM) Template
-  uses: Azure/arm-deploy@v1.0.9
-  with:
-    # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'managementgroup', 'subscription'
-    scope: resourcegroup
-    # Override the Subscription Id set by Azure Login.
-    subscriptionId: # ${{ secrets.AzureSubscriptionId }}
-    # Specify the Id for the Management Group, only required for Management Group Deployments.
-    managementGroupId: # optional
-    # Provide the target region, only required for management Group or Subscription deployments.
-    region: 'brazilsouth'
-    # Provide the name of a resource group, only required for resource Group deployments.
-    resourceGroupName: $prodResourceGroupName
-    # Specify the path or URL to the Azure Resource Manager template.
-    template: 'azure/azuredeploy.json'
-    # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
-    deploymentMode: # optional
-    # Specifies the name of the resource group deployment to create.
-    deploymentName: # optional
-    # Supply deployment parameter values.
-    parameters: 'azure/azuredeploy.parameters.json'
-    # Specify whether to fail the action if some data is written to stderr stream of az cli. Valid values are: true, false
-    failOnStdErr: # optional, default is true
-    # Specify any additional arguments for the deployment.
-    additionalArguments: # optional
+name: AKS Production Cluster Deployment
+run-name: Deploy to ${{ inputs.deploy_target }} by @{{ github.actor }}
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'azure/azuredeploy.json'
+      - 'azure/azuredeploy.parameters.json''
+  workflow_dispatch:
+    inputs:
+      deploy_target:
+        description: 'Target environment to deploy to'
+        required: true
+        default: 'production'
+
+jobs:
+  deploy_aks_production:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy Azure Resource Manager (ARM) Template
+      uses: Azure/arm-deploy@v1.0.9
+      with:
+        # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'managementgroup', 'subscription'
+        scope: resourcegroup
+        # Override the Subscription Id set by Azure Login.
+        subscriptionId: ${{ secrets.AzureSubscriptionId }}
+        # Provide the target region, only required for management Group or Subscription deployments.
+        region: 'brazilsouth'
+        # Provide the name of a resource group, only required for resource Group deployments.
+        resourceGroupName: $prodResourceGroupName
+        # Specify the path or URL to the Azure Resource Manager template.
+        template: 'azure/azuredeploy.json'
+        # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
+        parameters: 'azure/azuredeploy.parameters.json'
