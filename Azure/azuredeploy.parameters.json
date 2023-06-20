@@ -1,0 +1,57 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourceName": {
+            "value": "k8s-self-study-c1"
+        },
+        "location": {
+            "value": "brazilsouth"
+        },
+        "dnsPrefix": {
+            "value": "k8s-self-study-c1-dns"
+        },
+        "kubernetesVersion": {
+            "value": "1.25.6"
+        },
+        "networkPlugin": {
+            "value": "kubenet"
+        },
+        "enableRBAC": {
+            "value": true
+        },
+        "nodeResourceGroup": {
+            "value": "MC_k8s-self-study_k8s-self-study-c1_brazilsouth"
+        },
+        "upgradeChannel": {
+            "value": "patch"
+        },
+        "adminGroupObjectIDs": {
+            "value": []
+        },
+        "disableLocalAccounts": {
+            "value": true
+        },
+        "azureRbac": {
+            "value": true
+        },
+        "enablePrivateCluster": {
+            "value": false
+        },
+        "enableAzurePolicy": {
+            "value": false
+        },
+        "enableSecretStoreCSIDriver": {
+            "value": false
+        },
+        "vmssNodePool": {
+            "value": true
+        },
+        "acrName": {
+            "value": "k8sselfstudy"
+        },
+        "acrResourceGroup": {
+            "value": "k8s-self-study"
+        }
+    }
+}
