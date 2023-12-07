@@ -3,7 +3,13 @@ kind: Deployment
 metadata:
   name: hello-world
 spec:
-  replicas: 10
+  replicas: 20
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 10%
+      maxSurge: 2
+  revisionHistoryLimit: 20
   selector:
     matchLabels:
       app: hello-world
@@ -17,3 +23,9 @@ spec:
         image: gcr.io/google-samples/hello-app:1.0
         ports:
         - containerPort: 8080
+        readinessProbe:  
+          httpGet:  
+            path: /index.html
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10  
