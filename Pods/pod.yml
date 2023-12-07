@@ -1,8 +1,8 @@
-# Simple Kubernetes Pod to deploy the app contained in nigelpoulton/getting-started-k8s:1.0
+# testing Pod life cycle
 apiVersion: v1
 kind: Pod
 metadata:
-  name: hello-pod
+  name: hello-world
   labels:
     app: web
 spec:

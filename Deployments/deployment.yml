@@ -1,21 +1,15 @@
-# Simple deployment used to deploy and manage the app in nigelpoulton/ps-web:1.0
+# Simple deployment used to deploy and manage the app in nigelpoulton/getting-started-k8s:1.0
 apiVersion: apps/v1
-kind: Deployment
+kind: Pod
 metadata:
   name: web-deploy
   labels:
     app: web
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: web
-  replicas: 3
-  minReadySeconds: 5
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 0
-      maxSurge: 1
   template:
     metadata:
       labels:
@@ -24,7 +18,7 @@ spec:
       terminationGracePeriodSeconds: 1
       containers:
       - name: hello-pod
-        image: nigelpoulton/getting-started-k8s:2.0
+        image: nigelpoulton/getting-started-k8s:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

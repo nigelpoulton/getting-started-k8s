@@ -1,0 +1,37 @@
+apiVersion:  v1
+kind: Deployment
+metadata:
+  name: hello-world
+spec:
+  replicas:  1
+  selector:
+     matchLabels:
+        app:  hello-world
+  template:
+    metadata:
+      labels:
+        app:  hello-world
+    spec:
+      containers:
+      - name:  hello-world
+        image:  gcr.io/google-samples/hello-app:1.0
+        ports:
+        - containerPort: 8080
+        startupProbe:
+          tcpSocket:
+            port: 8081
+          initialDeplaySeconds:  10
+          periodSeconds:  5
+          failureThreshold:  1
+        livenessProbe:
+          tcpSocket:
+            port:  8080
+          initialDelaySeconds:  10
+          periodSeconds:  5
+        readinessProbe: 
+          httpGet:
+            path:  /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+
