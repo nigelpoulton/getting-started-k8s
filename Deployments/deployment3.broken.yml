@@ -1,9 +1,9 @@
-# Hoang deployment version 2 on 12/06/2023
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-world
 spec:
+  progressDeadlineSeconds: 10
   replicas: 10
   selector:
     matchLabels:
@@ -12,9 +12,9 @@ spec:
     metadata:
       labels:
         app: hello-world
-    spec:
+    spec: 
       containers:
-      - name: hello-world
-        image: gcr.io/google-samples/hello-app:2.0
+      - name: hello-pod
+        image: gcr.io/google-samples/hello-ap:2.0
         ports:
         - containerPort: 8080

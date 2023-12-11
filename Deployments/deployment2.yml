@@ -1,3 +1,4 @@
+# Hoang deployment version 2 on 12/06/2023
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,6 +15,6 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: gcr.io/google-samples/hello-app:1.0
+        image: gcr.io/google-samples/hello-app:2.0
         ports:
         - containerPort: 8080
