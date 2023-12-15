@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-azure-standard-ssd
+  spec:
+  accessModes:
+    - ReadWriteOnce
+    storageClassName: managed-standard-ssd
+    resources:
+      requests:
+        storage: 10Gi
+---
+
+
+
+

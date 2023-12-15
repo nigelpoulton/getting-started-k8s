@@ -1,0 +1,8 @@
+apiVersion: storage.k8s.io/v1
+kind: storageClassName:metadata:
+  name: managed-standard-ssd
+parameters:
+  cachingmode: ReadOnly
+  kind: managed
+  storageaccounttype: StandardSSD_LRS
+provisioner: kubernetes.io/azure-disk    
