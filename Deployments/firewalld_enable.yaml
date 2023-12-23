@@ -1,0 +1,8 @@
+- name: Start and enable http in firewall rules
+  ansible.builtin.systemd:
+  hosts: redhat
+    name: firewalld
+      state: started
+      enabled: yes
+      service: http 
+      permanent: yes

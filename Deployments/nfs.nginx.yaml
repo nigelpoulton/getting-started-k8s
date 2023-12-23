@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-nfs-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      lables:
+        app: nginx
+    spec:  
+      volumes:
+      - name: webcontent
+        persistentVolumeClain:
+          claimName: pvc-nfs-data
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: webcontent
+          mountPath: "/usr/share/nginx/html/web-app"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-nfs-service
+spec:
+  selector:
+    app: nginx
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80

@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hello-world-job-fail
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      containers:
+      - name: ubuntu
+        image: ubuntu
+        command:
+         - "/bin/bash"
+         - "-c"
+         - "/bin/ech Hello from Pod %(hostname) at $(date)"
+      restartPolicy: Never

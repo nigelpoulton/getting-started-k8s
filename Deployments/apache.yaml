@@ -1,0 +1,20 @@
+- name: 'Manage Apache Webserver Deployment'
+  hosts: RedHat
+  become: true
+  gather_facts: false
+  tasks:
+    - name: 'Install the Apache Webserver'
+      package:
+        name: 'httpd'
+        state: 'present'
+    - name: 'Ensure webserver is enable and running'
+      service: 
+        name: 'httpd'
+        state: 'started'
+        enabled: true
+    - name: 'Copy web contents'
+      copy:
+        dest: '/var/www/html/index.html'
+        content: |
+          This is a simple page
+          <h1>Welcome</h1>

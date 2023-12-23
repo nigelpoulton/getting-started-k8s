@@ -2,23 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-deploy
+  name: hello-world
   labels:
-    app: web
+    app: hello-world
 spec:
   replicas: 5
   selector:
     matchLabels:
-      app: web
+      app: hello-world
   template:
     metadata:
       labels:
-        app: web
-    spec: 
-      terminationGracePeriodSeconds: 1
+        app: hello-world
+    spec:    
       containers:
-      - name: hello-pod
-        image: nigelpoulton/getting-started-k8s:1.0
-        imagePullPolicy: Always
+      - name: hello-world
+        image: gcr.io/google-samples/hello-app:1.0
         ports:
         - containerPort: 8080

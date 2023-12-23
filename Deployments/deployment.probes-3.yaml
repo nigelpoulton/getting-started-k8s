@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+spec:
+  replicas: 20
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 10%
+      maxSurge: 2
+  revisionHistoryLimit: 20
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: gcr.io/google-samples/hello-app:2.0
+        ports:
+        - containerPort: 8080
+        readinessProbe:  
+          httpGet:  
+            path: /index.html
+            port: 8081
+          initialDelaySeconds: 10
+          periodSeconds: 10  

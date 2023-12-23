@@ -1,0 +1,20 @@
+# Testing Pod life cycle 2
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-world-onfailure-pod
+spec:
+  containers:
+  - name: hello-world
+    image:  gcr.io/google-samples/hello-app:1.0
+  restartPolicy:  OnFailure
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-world-never-pod
+spec:
+  containers:
+  - name: hello-world
+    image:  gcr.io/google-samples/hello-app:1.0
+  restartPolicy: Never
+ 

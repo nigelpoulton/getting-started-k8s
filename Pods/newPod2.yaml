@@ -1,0 +1,23 @@
+# new created by Hoang 12/01/2023
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+spec:
+  replicas: 5
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values: 
+          - hello-world-pod-me
+  template:
+    metadata:
+      labels:
+        app: hello-world-pod-me
+    spec:
+      containers:
+      - name: hello-world
+        image: gcr.io/google-samples/hello-app:1.0
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,10 @@
+# Create a private key
+openssl genrsa -out demouser.key 2048
+
+# Generate a CSR
+# CN (Common Name) is your username, O (Oraganization) is the Group
+openssl req -new -key demouser.key -out demouser.csr -subj "CN=demounser"
+
+# The CertificateSigningRequest needs to be base64 encoded
+# And also have the header and trailer pulled out.
+cat demouser.csr | base64 | tr -d "\n" > demouser.base64.csr

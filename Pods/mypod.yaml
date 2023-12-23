@@ -1,0 +1,15 @@
+# Simple Kubernetes Pod to deploy the app contained in nigelpoulton/getting-started-k8s:1.0
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null  
+  labels:
+    run: hello-world 
+  name: hello-world
+spec:
+  containers:
+  - image: nigelpoulton/getting-started-k8s:1.0
+    name: hello-world
+    ports:
+    - containerPort: 8080
+    resources: {}

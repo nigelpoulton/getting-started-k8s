@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-beta
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-beta
+  template:
+    metadata:
+      labels:
+        app: hello-world-beta
+    spec: 
+      containers:
+      - name: hello-world
+        image: gcr.io/google-samples/hello-app:1.0
+        env:
+        - name: DATABASE_SERVERNAME
+          value: "sql.example.local"
+        - name: BACKEND_SERVERNAME
+          value: "be.example.local"  
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-beta
+spec:
+  selector:
+    app: hello-world-beta
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP  
+    
+     

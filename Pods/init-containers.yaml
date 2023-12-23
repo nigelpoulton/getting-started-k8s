@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-containers
+spec:
+  initContainers:
+  - name: init-service
+    image: ubuntu
+    command: ['sh', '-c', "echo waiting for service; sleep 2"]
+  - name: init-database
+    image: ubuntu
+    command: ['sh', '-c', "echo waiting for database; sleep 2"]  
+  containers:
+  - name: app-container
+    image: nginx
